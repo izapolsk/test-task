@@ -2,6 +2,7 @@ from widgetastic.widget.base import View
 from widgetastic_bootstrap.button import Button
 from widgetastic.widget.input import TextInput
 from widgetastic.widget.text import Text
+from widgetastic_patternfly import BootstrapNav
 
 from lib.widgets.account_dropdown import AccountDropdown
 
@@ -34,4 +35,11 @@ class BaseLoggedInView(View):
     # todo: turn into navbar widget
     @View.nested
     class navbar(View):
-        user_menu = AccountDropdown(id="account-dropdown")
+        account = AccountDropdown(id="account-dropdown")
+
+    # merge this with dropdown above
+    navigation = BootstrapNav('.//div/ul')
+
+    @property
+    def is_displayed(self):
+        return self.navbar.account.is_displayed
