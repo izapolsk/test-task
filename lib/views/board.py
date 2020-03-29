@@ -17,18 +17,40 @@ class MainBoardView(BaseLoggedInView):
     @property
     def is_displayed(self):
         return all((super(MainBoardView, self).is_displayed,
-                   self.body.add_well.is_displayed,
-                   self.body.add_not_well.is_displayed,
-                   self.body.add_action_point.is_displayed))
+                   self.body.went_well.is_displayed,
+                   self.body.went_unwell.is_displayed,
+                   self.body.action_points.is_displayed))
 
     @View.nested
     class sidebar(View):  # noqa
         pass
 
     class body(View):  # noqa
-        add_well = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
-                                                'contains(@class, "text-success")]')
-        add_not_well = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
-                                                    'contains(@class, "text-danger")]')
-        add_action_point = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
-                                                        'contains(@class, "text-primary")]')
+        @View.nested
+        class went_well(View):  # noqa
+            ROOT = './/h5/span[normalize-space(.)="Went well"]'
+            add = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
+                                               'contains(@class, "text-success")]')
+
+            @property
+            def cards(self):
+                return
+
+        @View.nested
+        class went_unwell(View):  # noqa
+            ROOT = './/h5/span[normalize-space(.)="Went well"]'
+            add = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
+                                               'contains(@class, "text-danger")]')
+
+            @property
+            def cards(self):
+                return
+
+        @View.nested
+        class action_points(View):  # noqa
+            add = GenericLocatorWidget(locator='.//button[contains(@class, "card") and '
+                                               'contains(@class, "text-primary")]')
+
+            @property
+            def cards(self):
+                return
