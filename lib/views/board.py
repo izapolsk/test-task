@@ -1,7 +1,8 @@
-from widgetastic.widget import TextInput, View, GenericLocatorWidget, Text
+from widgetastic.widget import TextInput, View, GenericLocatorWidget
 from widgetastic_bootstrap.button import Button
 
 from lib.views.base import BaseLoggedInView
+from lib.widgets.card import Card
 from lib.widgets.html_dropdown import HTMLDropdown
 from lib.widgets.sweet_alert import SweetAlert
 
@@ -25,6 +26,7 @@ class MainBoardView(BaseLoggedInView):
     class sidebar(View):  # noqa
         pass
 
+    @View.nested
     class body(View):  # noqa
         @View.nested
         class went_well(View):  # noqa
@@ -34,7 +36,7 @@ class MainBoardView(BaseLoggedInView):
 
             @property
             def cards(self):
-                return
+                return Card.all()
 
         @View.nested
         class went_unwell(View):  # noqa
@@ -44,7 +46,7 @@ class MainBoardView(BaseLoggedInView):
 
             @property
             def cards(self):
-                return
+                return Card.all()
 
         @View.nested
         class action_points(View):  # noqa
@@ -53,4 +55,4 @@ class MainBoardView(BaseLoggedInView):
 
             @property
             def cards(self):
-                return
+                return Card.all()
