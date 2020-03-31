@@ -1,6 +1,0 @@
-webdriver: Chrome
-  webdriver_options:
-    desired_capabilities:
-      browserName: chrome
-      platform: LINUX
-      unexpectedAlertBehaviour: ignore
