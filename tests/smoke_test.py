@@ -163,8 +163,8 @@ def test_create_delete_red_card(board, browser):
     assert confirm_modal.header.is_displayed, "Confirm delete modal hasn't been displayed"
     assert confirm_modal.header.title.text == expected_title, (f"Expected modal title {expected_title}, "
                                                                f"whereas got title {confirm_modal.header.title}")
-    assert (confirm_modal.body.description.text == expected_description,
-            f"Expected modal description {expected_description} whereas got description {expected_description}")
+    assert_msg = f"Expected modal description {expected_description} whereas got description {expected_description}"
+    assert confirm_modal.body.description.text == expected_description, assert_msg
     logger.info('Step 17. Click “Confirm” button')
     confirm_modal.accept()
     logger.info('Expected Result 17. Card with title “Goal was not achieved” is removed from the board')
