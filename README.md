@@ -68,3 +68,5 @@ tests/smoke_test.py 2020-03-31 14:35:42.072 | INFO     | tests.smoke_test:browse
 
 ============================================================================================================= 2 passed in 34.71s =============================================================================================================
 ```
+
+NB: login and password are hardcoded in test as a temporary solution. Those have to be saved to vault/encrypted file or passed via env variables in future.
