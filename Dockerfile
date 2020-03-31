@@ -1,6 +1,6 @@
 FROM fedora:30
 
-ENV SELENIUM_VERSION 3.14.0
+ENV SELENIUM_VERSION 3.141.0
 ENV DESTDIR=/sprintboards
 ENV GIT_SSL_NO_VERIFY true
 
@@ -23,6 +23,7 @@ RUN CHROME_VERSION=$(rpm -q --qf "%{VERSION}\n" google-chrome-stable|sed -Ee 's/
     curl -o ${DESTFILE} https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip && \
     unzip -d /root/chrome-driver/ ${DESTFILE} && \
     rm -f ${DESTFILE}
+    ENV PATH="${PATH}:/root/chrome-driver/"
 
 
 # clone tests
