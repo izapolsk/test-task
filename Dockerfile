@@ -33,3 +33,5 @@ WORKDIR $DESTDIR
 
 # install python requirements
 RUN pip3 install -r requirements.txt
+
+CMD pytest -m smoke tests
