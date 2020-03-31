@@ -36,8 +36,8 @@ collected 2 items
 
 tests/smoke_test.py 2020-03-31 14:35:42.072 | INFO     | tests.smoke_test:browser:24 - openning chrome browser
 2020-03-31 14:35:43.252 | INFO     | tests.smoke_test:browser:31 - step 1. Go to https://sprintboards.io/auth/login
-2020-03-31 14:35:44.168 | INFO     | tests.smoke_test:login:42 - Step 2. Type "sennderqa3@gmail.com" in “Email Address” field
-2020-03-31 14:35:44.168 | INFO     | tests.smoke_test:login:43 - Step 3. Type “n*H7A7f@&ikbwu” as password in “Password” field
+2020-03-31 14:35:44.168 | INFO     | tests.smoke_test:login:42 - Step 2. Type "***@gmail.com" in “Email Address” field
+2020-03-31 14:35:44.168 | INFO     | tests.smoke_test:login:43 - Step 3. Type “***” as password in “Password” field
 2020-03-31 14:35:44.168 | INFO     | tests.smoke_test:login:44 - Step 4. Click “Login”
 2020-03-31 14:35:47.803 | INFO     | tests.smoke_test:board:57 - Step 5. Click “CREATE BOARD”
 2020-03-31 14:35:50.018 | INFO     | tests.smoke_test:board:61 - Verifying Expected Result 5.1. User is taken to https://sprintboards.io/boards/create
