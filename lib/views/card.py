@@ -13,4 +13,9 @@ class AddCardView(BootstrapModal):
         title = TextInput(locator='.//input[@type="text"]')
         description = TextInput(locator='.//textarea')
         card_type = HTMLDropdown(locator='.//select[@class="custom-select"]')
+
+    @View.nested
+    class footer(View):  # noqa
+        """ The footer of the modal """
+        ROOT = './/div[contains(@class, "modal-footer")]'
         add_card = Button('Add Card')

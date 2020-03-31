@@ -1,6 +1,6 @@
 loguru==0.4.1
 pytest==5.4.1
-selenium==3.141.
+selenium==3.141
 widgetastic.bootstrap==0.1.2
 widgetastic.core==0.51
 

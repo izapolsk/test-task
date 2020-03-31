@@ -2,8 +2,7 @@ from widgetastic.utils import ParametrizedLocator
 from widgetastic.widget.base import GenericLocatorWidget
 from widgetastic.widget.base import View
 from widgetastic_patternfly import Button
-
-from lib.widgets.bootstrap_modal import BootstrapModal
+from wait_for import wait_for
 
 
 class Card(View):
@@ -31,6 +30,9 @@ class Card(View):
     def liked(self):
         return bool(int(self.browser.text(self.like_button)))
 
+    def wait_liked(self, liked, timeout='5s'):
+        return wait_for(lambda: self.like_button.is_displayed and self.liked == liked, timeout=timeout, delay=1)[0]
+
     def like(self):
         if not self.liked:
             self.like_button.click()
@@ -45,12 +47,8 @@ class Card(View):
         else:
             return False
 
-    def delete(self, handle_alert=False):
+    def delete(self):
         self.delete_button.click()
-        if handle_alert:
-            BootstrapModal(self.browser).accept()
-        elif handle_alert is False:
-            BootstrapModal(self.browser).dismiss()
 
     @classmethod
     def all(cls, parent):
