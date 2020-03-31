@@ -6,6 +6,7 @@ from widgetastic.browser import Browser
 from lib.views.base import LoginView, BaseLoggedInView
 from lib.views.board import CreateBoardView, MainBoardView
 from lib.views.card import AddCardView
+from lib.widgets.bootstrap_modal import BootstrapModal
 
 
 APP_URL = 'https://sprintboards.io/auth/login'
@@ -92,7 +93,7 @@ def test_create_green_card(board):
         pytest.fail("Card hasn't been created or has wrong title or description")
 
 
-def test_create_delete_red_card(board):
+def test_create_delete_red_card(board, browser):
     card_title = 'Goal was not achieved'
     card_description = 'No description provided'
     # Step 12. Click red “+” button
@@ -118,8 +119,17 @@ def test_create_delete_red_card(board):
     # Expected Result 15. “Likes” count goes from 0 to 1
     assert created_card.liked, "Thumbs up hasn't been updated"
     # Step 16. Click “x Delete” button from the card in the second column
-
+    created_card.delete()
     # Expected Result 16. Modal appears with the following text: • “Delete Card” • “Are you sure you want to continue?”
-
+    confirm_modal = BootstrapModal(browser)
+    expected_title = "Delete Card"
+    expected_description = "Are you sure you want to continue?"
+    assert confirm_modal.header.is_displayed, "Confirm delete modal hasn't been displayed"
+    assert confirm_modal.header.title == expected_title, (f"Expected modal title {expected_title}, "
+                                                          f"whereas got title {confirm_modal.header.title}")
+    assert confirm_modal.body.description == expected_description, (f"Expected modal description {expected_description}"
+                                                                    f", whereas got description {expected_description}")
     # Step 17. Click “Confirm” button
+    confirm_modal.accept()
     # Expected Result 17. Card with title “Goal was not achieved” is removed from the board
+    assert not created_card.is_displayed, "The card hasn't been removed"
